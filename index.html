@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>James Holloway — Composer & Musician</title>
+  <title>James Holloway — Composer</title>
   <meta name="description" content="James Holloway is a composer and musician whose work spans orchestral, chamber, and electronic music." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@200;300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <!-- Grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
   <!-- Navigation -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">James Holloway</a>
+      <a href="#hero" class="nav-logo">JH</a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <span></span><span></span>
       </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -30,132 +33,195 @@
 
   <!-- Hero -->
   <section id="hero">
-    <div class="hero-content">
-      <p class="hero-pre">Composer &amp; Musician</p>
-      <h1>James<br />Holloway</h1>
-      <p class="hero-sub">Orchestral · Chamber · Electronic</p>
-      <a href="#audio" class="btn">Listen to my work</a>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content reveal">
+      <p class="label">Composer &amp; Musician</p>
+      <h1>James<br /><em>Holloway</em></h1>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p class="hero-sub">Orchestral &nbsp;·&nbsp; Chamber &nbsp;·&nbsp; Electronic</p>
     </div>
-    <div class="hero-scroll-hint" aria-hidden="true">↓</div>
+    <a href="#about" class="hero-scroll" aria-label="Scroll down">
+      <span class="hero-scroll-line"></span>
+    </a>
   </section>
 
   <!-- About -->
   <section id="about">
-    <div class="container two-col">
+    <div class="container two-col reveal">
       <div class="about-image">
-        <div class="image-placeholder">
-          <span>Photo</span>
+        <div class="image-frame">
+          <div class="image-placeholder"><span>Photo</span></div>
         </div>
       </div>
       <div class="about-text">
-        <h2>About</h2>
-        <p class="lead">James Holloway is an award-winning composer and musician whose work has been performed across Europe and North America.</p>
+        <p class="label">About</p>
+        <h2>A life in sound</h2>
+        <p class="lead">James Holloway is an award-winning composer whose work has been performed across Europe and North America.</p>
         <p>Drawing on a lifelong fascination with the intersection of acoustic and electronic sound, James creates music that is both deeply personal and universally resonant. His compositions range from intimate solo pieces to large-scale orchestral works.</p>
         <p>He studied at the Royal College of Music and has worked with ensembles including the London Symphony Orchestra, the Kronos Quartet, and the BBC Concert Orchestra. His scores are published by Edition Peters.</p>
-        <a href="#contact" class="btn btn-outline">Get in touch</a>
+        <a href="#contact" class="btn">Commission a work</a>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio of Works -->
+  <!-- Portfolio -->
   <section id="portfolio">
     <div class="container">
-      <h2>Selected Works</h2>
-      <p class="section-sub">A selection of compositions from 2010 to the present.</p>
-      <div class="works-grid">
-
-        <article class="work-card">
-          <div class="work-year">2024</div>
-          <h3>Stillwater</h3>
-          <p class="work-type">String Quartet</p>
-          <p>A single-movement work exploring stillness and gradual transformation, premiered at the Wigmore Hall, London.</p>
-          <span class="work-tag">Chamber</span>
-        </article>
-
-        <article class="work-card">
-          <div class="work-year">2022</div>
-          <h3>Fracture Lines</h3>
-          <p class="work-type">Orchestra &amp; Electronics</p>
-          <p>Commissioned by the BBC Proms. A large-scale work in three movements responding to tectonic and social rupture.</p>
-          <span class="work-tag">Orchestral</span>
-          <span class="work-tag">Electronic</span>
-        </article>
-
-        <article class="work-card">
-          <div class="work-year">2020</div>
-          <h3>Seven Silences</h3>
-          <p class="work-type">Solo Piano</p>
-          <p>Seven miniatures, each exploring a different quality of silence — written during lockdown and recorded at Abbey Road.</p>
-          <span class="work-tag">Solo</span>
-        </article>
-
-        <article class="work-card">
-          <div class="work-year">2018</div>
-          <h3>The Cartographer's Dream</h3>
-          <p class="work-type">Choir &amp; Chamber Orchestra</p>
-          <p>A song cycle setting texts by contemporary poets, weaving cartographic imagery with themes of belonging and loss.</p>
-          <span class="work-tag">Choral</span>
-          <span class="work-tag">Chamber</span>
-        </article>
-
-        <article class="work-card">
-          <div class="work-year">2015</div>
-          <h3>Drift</h3>
-          <p class="work-type">Electroacoustic</p>
-          <p>A fixed-media piece constructed from field recordings gathered across the Arctic. Winner of the Prix Ars Electronica.</p>
-          <span class="work-tag">Electronic</span>
-        </article>
-
-        <article class="work-card">
-          <div class="work-year">2012</div>
-          <h3>Heliograph</h3>
-          <p class="work-type">Symphony Orchestra</p>
-          <p>A four-movement symphony inspired by the science and mythology of sunlight. Dedicated to his late teacher, Arvo Pärt.</p>
-          <span class="work-tag">Orchestral</span>
-        </article>
-
+      <div class="section-header reveal">
+        <p class="label">Selected works</p>
+        <h2>Compositions</h2>
       </div>
+      <ol class="works-list">
+
+        <li class="work-row reveal">
+          <span class="work-num">01</span>
+          <div class="work-main">
+            <h3>Stillwater</h3>
+            <p>A single-movement work exploring stillness and gradual transformation, premiered at the Wigmore Hall, London.</p>
+          </div>
+          <div class="work-meta">
+            <span class="work-type">String Quartet</span>
+            <span class="work-year">2024</span>
+          </div>
+        </li>
+
+        <li class="work-row reveal">
+          <span class="work-num">02</span>
+          <div class="work-main">
+            <h3>Fracture Lines</h3>
+            <p>Commissioned by the BBC Proms. A large-scale work in three movements responding to tectonic and social rupture.</p>
+          </div>
+          <div class="work-meta">
+            <span class="work-type">Orchestra &amp; Electronics</span>
+            <span class="work-year">2022</span>
+          </div>
+        </li>
+
+        <li class="work-row reveal">
+          <span class="work-num">03</span>
+          <div class="work-main">
+            <h3>Seven Silences</h3>
+            <p>Seven miniatures, each exploring a different quality of silence — written during lockdown and recorded at Abbey Road.</p>
+          </div>
+          <div class="work-meta">
+            <span class="work-type">Solo Piano</span>
+            <span class="work-year">2020</span>
+          </div>
+        </li>
+
+        <li class="work-row reveal">
+          <span class="work-num">04</span>
+          <div class="work-main">
+            <h3>The Cartographer's Dream</h3>
+            <p>A song cycle setting texts by contemporary poets, weaving cartographic imagery with themes of belonging and loss.</p>
+          </div>
+          <div class="work-meta">
+            <span class="work-type">Choir &amp; Chamber Orchestra</span>
+            <span class="work-year">2018</span>
+          </div>
+        </li>
+
+        <li class="work-row reveal">
+          <span class="work-num">05</span>
+          <div class="work-main">
+            <h3>Drift</h3>
+            <p>A fixed-media piece constructed from field recordings gathered across the Arctic. Winner of the Prix Ars Electronica.</p>
+          </div>
+          <div class="work-meta">
+            <span class="work-type">Electroacoustic</span>
+            <span class="work-year">2015</span>
+          </div>
+        </li>
+
+        <li class="work-row reveal">
+          <span class="work-num">06</span>
+          <div class="work-main">
+            <h3>Heliograph</h3>
+            <p>A four-movement symphony inspired by the science and mythology of sunlight, dedicated to his teacher.</p>
+          </div>
+          <div class="work-meta">
+            <span class="work-type">Symphony Orchestra</span>
+            <span class="work-year">2012</span>
+          </div>
+        </li>
+
+      </ol>
     </div>
   </section>
 
   <!-- Audio -->
   <section id="audio">
     <div class="container">
-      <h2>Listen</h2>
-      <p class="section-sub">Selected recordings — replace these with your own audio files.</p>
+      <div class="section-header reveal">
+        <p class="label">Recordings</p>
+        <h2>Listen</h2>
+      </div>
       <div class="audio-list">
 
-        <div class="audio-item">
+        <div class="audio-item reveal" data-src="audio/stillwater.mp3">
           <div class="audio-meta">
             <h3>Stillwater</h3>
-            <span>String Quartet · 2024 · 14′</span>
+            <span class="label">String Quartet &nbsp;·&nbsp; 2024 &nbsp;·&nbsp; 14′</span>
           </div>
-          <audio controls preload="none">
-            <source src="audio/stillwater.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
+          <div class="player">
+            <button class="player-play" aria-label="Play Stillwater">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+            <div class="player-track">
+              <div class="player-bar" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                <div class="player-fill"></div>
+              </div>
+              <div class="player-times">
+                <span class="player-current">0:00</span>
+                <span class="player-duration">–:––</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="audio-item">
+        <div class="audio-item reveal" data-src="audio/seven-silences-i.mp3">
           <div class="audio-meta">
             <h3>Seven Silences — I. Before Dawn</h3>
-            <span>Solo Piano · 2020 · 3′</span>
+            <span class="label">Solo Piano &nbsp;·&nbsp; 2020 &nbsp;·&nbsp; 3′</span>
           </div>
-          <audio controls preload="none">
-            <source src="audio/seven-silences-i.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
+          <div class="player">
+            <button class="player-play" aria-label="Play Seven Silences I">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+            <div class="player-track">
+              <div class="player-bar" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                <div class="player-fill"></div>
+              </div>
+              <div class="player-times">
+                <span class="player-current">0:00</span>
+                <span class="player-duration">–:––</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="audio-item">
+        <div class="audio-item reveal" data-src="audio/drift.mp3">
           <div class="audio-meta">
             <h3>Drift</h3>
-            <span>Electroacoustic · 2015 · 22′</span>
+            <span class="label">Electroacoustic &nbsp;·&nbsp; 2015 &nbsp;·&nbsp; 22′</span>
           </div>
-          <audio controls preload="none">
-            <source src="audio/drift.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
+          <div class="player">
+            <button class="player-play" aria-label="Play Drift">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+            <div class="player-track">
+              <div class="player-bar" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                <div class="player-fill"></div>
+              </div>
+              <div class="player-times">
+                <span class="player-current">0:00</span>
+                <span class="player-duration">–:––</span>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -165,26 +231,30 @@
   <!-- Contact -->
   <section id="contact">
     <div class="container contact-inner">
-      <div class="contact-text">
-        <h2>Get in Touch</h2>
-        <p>For commissions, performance enquiries, or press requests, please use the form or email directly at <a href="mailto:james@example.com">james@example.com</a>.</p>
-        <p>He is represented by <strong>Harrison Parrott Artists</strong> for orchestral and international engagements.</p>
+      <div class="contact-text reveal">
+        <p class="label">Get in touch</p>
+        <h2>Commissions &amp; Enquiries</h2>
+        <p>For commissions, performance enquiries, or press requests, please use the form or email directly.</p>
+        <a href="mailto:james@example.com" class="contact-email">james@example.com</a>
+        <p class="contact-rep">Represented by <strong>Harrison Parrott Artists</strong> for orchestral and international engagements.</p>
       </div>
       <!-- Replace YOUR_FORM_ID with your Formspree form ID at formspree.io -->
-      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
-        <div class="form-row">
-          <label for="name">Name
-            <input id="name" name="name" type="text" required placeholder="Your name" />
-          </label>
-          <label for="email">Email
-            <input id="email" name="email" type="email" required placeholder="your@email.com" />
-          </label>
-        </div>
-        <label for="subject">Subject
+      <form class="contact-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+        <label for="name">
+          <span>Name</span>
+          <input id="name" name="name" type="text" required placeholder="Your name" />
+        </label>
+        <label for="email">
+          <span>Email</span>
+          <input id="email" name="email" type="email" required placeholder="your@email.com" />
+        </label>
+        <label for="subject">
+          <span>Subject</span>
           <input id="subject" name="subject" type="text" placeholder="Commission / Enquiry / Press" />
         </label>
-        <label for="message">Message
-          <textarea id="message" name="message" required rows="5" placeholder="Tell me about your project or enquiry…"></textarea>
+        <label for="message">
+          <span>Message</span>
+          <textarea id="message" name="message" required rows="5" placeholder="Tell me about your project…"></textarea>
         </label>
         <button type="submit" class="btn">Send message</button>
         <p class="form-status" aria-live="polite"></p>
@@ -195,7 +265,7 @@
   <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> James Holloway. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> James Holloway</p>
       <ul class="footer-links">
         <li><a href="https://soundcloud.com" target="_blank" rel="noopener">SoundCloud</a></li>
         <li><a href="https://spotify.com" target="_blank" rel="noopener">Spotify</a></li>
