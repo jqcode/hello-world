@@ -1,7 +1,14 @@
-// ─── Nav scroll ────────────────────────────────────────────────────────────
-const nav = document.getElementById('nav');
+// ─── Nav scroll & parallax ─────────────────────────────────────────────────
+const nav   = document.getElementById('nav');
+const heroBg = document.querySelector('.hero-bg');
+const heroH  = () => document.getElementById('hero').offsetHeight;
+
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 60);
+  if (heroBg && y < heroH() * 1.2) {
+    heroBg.style.transform = `translateY(${y * 0.28}px)`;
+  }
 }, { passive: true });
 
 // ─── Mobile nav ────────────────────────────────────────────────────────────
