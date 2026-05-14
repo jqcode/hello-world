@@ -172,6 +172,11 @@ section { padding: 7rem 0; }
   position: relative;
   overflow: hidden;
   padding: 8rem 2rem 6rem;
+  background-image:
+    linear-gradient(to bottom, rgba(11,11,15,.55) 0%, rgba(11,11,15,.8) 60%, rgba(11,11,15,1) 100%),
+    url('images/andy-silhouette.png');
+  background-size: cover;
+  background-position: center top;
 }
 
 .hero-glow {
@@ -180,7 +185,7 @@ section { padding: 7rem 0; }
   transform: translate(-50%, -60%);
   width: 700px;
   height: 700px;
-  background: radial-gradient(ellipse, rgba(196,163,90,.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(196,163,90,.04) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -256,20 +261,13 @@ section { padding: 7rem 0; }
   border: 1px solid var(--rule);
   border-radius: var(--radius);
 }
-.image-placeholder {
+.image-frame img {
   width: 100%;
-  aspect-ratio: 3/4;
-  background: var(--bg3);
+  display: block;
   border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .7rem;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--text3);
   position: relative;
   z-index: 1;
+  filter: brightness(.92) contrast(1.05);
 }
 
 .about-text h2 { margin-bottom: 1.5rem; }
@@ -346,6 +344,19 @@ section { padding: 7rem 0; }
 
 /* ─── Press quotes ───────────────────────────────────────────────────────────── */
 #press { border-top: 1px solid var(--rule); }
+
+.press-inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.press-portrait img {
+  width: 100%;
+  border-radius: var(--radius);
+  filter: brightness(.88) contrast(1.08);
+  display: block;
+}
 
 .quotes-grid {
   display: grid;
@@ -626,6 +637,8 @@ footer p { font-size: .75rem; color: var(--text3); }
   .work-row { grid-template-columns: 2.5rem 1fr; }
   .work-meta { display: none; }
 
+  .press-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .press-portrait img { max-width: 260px; }
   .quotes-grid { grid-template-columns: 1fr; }
 
   .event-row { grid-template-columns: 5rem 1fr; }
