@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upper Chest — 40 min</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:           #0c0c0c;
+            --card:         #161616;
+            --border:       #242424;
+            --text:         #f0f0f0;
+            --muted:        #525252;
+            --accent-phase: #d4873a;
+            --accent-reps:  #5b9cf6;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ── Header ── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #111;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .workout-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ccc;
+            letter-spacing: 0.02em;
+        }
+
+        .timer-group { text-align: right; }
+
+        .timer {
+            font-size: 4.8rem;
+            font-weight: 200;
+            font-variant-numeric: tabular-nums;
+            color: #fff;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .timer-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-top: 3px;
+        }
+
+        /* ── Progress bar ── */
+        .progress-wrap {
+            height: 3px;
+            background: #1c1c1c;
+            flex-shrink: 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-phase);
+            width: 0%;
+            transition: width 1s linear;
+        }
+
+        /* ── Blocks ── */
+        .blocks {
+            display: flex;
+            flex: 1;
+            padding: 16px 22px;
+            gap: 12px;
+            min-height: 0;
+        }
+
+        .block {
+            flex: 1;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .block-time {
+            font-size: 0.7rem;
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .block-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent-phase);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 2px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Exercises ── */
+        .exercises {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .exercise { display: flex; flex-direction: column; gap: 4px; }
+
+        .exercise-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .exercise-detail {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-reps);
+            line-height: 1;
+        }
+
+        .exercise-sub {
+            font-size: 0.78rem;
+            color: #777;
+            margin-top: 1px;
+        }
+
+        .cues {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cue {
+            font-size: 0.76rem;
+            color: #4a4a4a;
+            line-height: 1.35;
+            padding-left: 9px;
+            border-left: 2px solid #2a2a2a;
+        }
+
+        .rest-tag {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.72rem;
+            color: #666;
+            background: #1e1e1e;
+            border: 1px solid #2c2c2c;
+            border-radius: 4px;
+            padding: 3px 9px;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="workout-title">Upper Chest — 40 min</div>
+    <div class="timer-group">
+        <div class="timer" id="timer">0:00</div>
+        <div class="timer-label">elapsed</div>
+    </div>
+</header>
+
+<div class="progress-wrap">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<div class="blocks">
+
+    <!-- 1. Warm-up -->
+    <div class="block">
+        <div>
+            <div class="block-time">0 – 5 min</div>
+            <div class="block-name">Warm-up</div>
+        </div>
+        <div class="divider"></div>
+        <div class="exercises">
+            <div class="exercise">
+                <div class="exercise-name">Incline Push-ups</div>
+                <div class="exercise-detail">× 15</div>
+            </div>
+            <div class="exercise">
+                <div class="exercise-name">Light Incline DB Press</div>
+                <div class="exercise-detail">× 12</div>
+            </div>
+            <div class="exercise">
+                <div class="exercise-name">Arm Circles</div>
+                <div class="exercise-sub">Shoulder mobility</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Heavy -->
+    <div class="block">
+        <div>
+            <div class="block-time">5 – 18 min</div>
+            <div class="block-name">Heavy Movement</div>
+        </div>
+        <div class="divider"></div>
+        <div class="exercises">
+            <div class="exercise">
+                <div class="exercise-name">Incline Barbell Press</div>
+                <div class="exercise-detail">5 × 5–8</div>
+                <div class="exercise-sub">Bench at ~30°</div>
+                <div class="cues">
+                    <div class="cue">Controlled descent</div>
+                    <div class="cue">Touch upper chest</div>
+                    <div class="cue">No bouncing</div>
+                    <div class="cue">Stop 1 rep before form collapse</div>
+                    <div class="cue">Slight pause near chest</div>
+                </div>
+                <span class="rest-tag">90 sec rest between sets</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Hypertrophy -->
+    <div class="block">
+        <div>
+            <div class="block-time">18 – 28 min</div>
+            <div class="block-name">Hypertrophy</div>
+        </div>
+        <div class="divider"></div>
+        <div class="exercises">
+            <div class="exercise">
+                <div class="exercise-name">Incline Dumbbell Press</div>
+                <div class="exercise-detail">3 × 8–12</div>
+                <div class="cues">
+                    <div class="cue">3 sec eccentric</div>
+                    <div class="cue">Full stretch at bottom</div>
+                    <div class="cue">Slightly lighter than barbell work</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Adduction -->
+    <div class="block">
+        <div>
+            <div class="block-time">28 – 34 min</div>
+            <div class="block-name">Adduction Focus</div>
+        </div>
+        <div class="divider"></div>
+        <div class="exercises">
+            <div class="exercise">
+                <div class="exercise-name">Dumbbell Squeeze Press</div>
+                <div class="exercise-detail">3 × 10–15</div>
+                <div class="exercise-sub">Flat or low incline</div>
+                <div class="cues">
+                    <div class="cue">Press dumbbells together throughout</div>
+                    <div class="cue">Constant inward pressure</div>
+                    <div class="cue">Targets upper-inner chest</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Finisher -->
+    <div class="block">
+        <div>
+            <div class="block-time">34 – 40 min</div>
+            <div class="block-name">Finisher</div>
+        </div>
+        <div class="divider"></div>
+        <div class="exercises">
+            <div class="exercise">
+                <div class="exercise-name">Feet-Elevated Push-ups</div>
+                <div class="exercise-detail">2 × failure</div>
+                <div class="cues">
+                    <div class="cue">Slow reps, deep stretch</div>
+                    <div class="cue">Full reach at top</div>
+                    <div class="cue">Optional: plate or backpack on back</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const timerEl = document.getElementById('timer');
+    const progressFill = document.getElementById('progressFill');
+    const TOTAL_SEC = 40 * 60;
+    const start = Date.now();
+
+    function tick() {
+        const elapsed = Math.floor((Date.now() - start) / 1000);
+        const m = Math.floor(elapsed / 60);
+        const s = elapsed % 60;
+        timerEl.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+        progressFill.style.width = Math.min(100, (elapsed / TOTAL_SEC) * 100) + '%';
+    }
+
+    tick();
+    setInterval(tick, 500);
+</script>
+
+</body>
+</html>
