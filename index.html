@@ -1,17 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andy Quin — Composer & Pianist</title>
-  <meta name="description" content="Andy Quin is a British composer, jazz pianist and theatre organist. One of the world's most prolific production music composers, with over 80 albums for De Wolfe Music." />
+
+  <!-- Primary SEO -->
+  <title>Andy Quin | Composer, Jazz Pianist &amp; Theatre Organist</title>
+  <meta name="description" content="Andy Quin is a British composer, jazz pianist and theatre organist. Over 80 albums for De Wolfe Music, with music heard in Boardwalk Empire, Better Call Saul, Victoria &amp; Abdul, and Coronation Street. PMA Award 2023." />
+  <meta name="keywords" content="Andy Quin, composer, jazz pianist, theatre organist, production music, De Wolfe Music, British composer, film music, TV music" />
+  <link rel="canonical" href="https://jqcode.github.io/hello-world/" />
+
+  <!-- Open Graph (social sharing) -->
+  <meta property="og:type"        content="profile" />
+  <meta property="og:title"       content="Andy Quin | Composer, Jazz Pianist &amp; Theatre Organist" />
+  <meta property="og:description" content="British composer, jazz pianist and theatre organist. Over 80 albums for De Wolfe Music, with music heard in Boardwalk Empire, Better Call Saul, Victoria &amp; Abdul, and Coronation Street." />
+  <meta property="og:url"         content="https://jqcode.github.io/hello-world/" />
+  <meta property="og:image"       content="https://jqcode.github.io/hello-world/images/andy-piano.png" />
+  <meta property="og:image:alt"   content="Andy Quin at a Steinway grand piano in a concert hall" />
+  <meta property="og:locale"      content="en_GB" />
+  <meta property="profile:first_name" content="Andy" />
+  <meta property="profile:last_name"  content="Quin" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Andy Quin | Composer, Jazz Pianist &amp; Theatre Organist" />
+  <meta name="twitter:description" content="British composer, jazz pianist and theatre organist. Over 80 albums for De Wolfe Music. PMA Award 2023." />
+  <meta name="twitter:image"       content="https://jqcode.github.io/hello-world/images/andy-piano.png" />
+
+  <!-- Favicon (initials as inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0b0f'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' fill='%23c4a35a'>AQ</text></svg>" />
+
+  <!-- Preload hero background image so it doesn't delay LCP -->
+  <link rel="preload" as="image" href="images/andy-silhouette.png" fetchpriority="high" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@200;300;400&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Structured data: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Andy Quin",
+    "alternateName": "Andrew James Quin",
+    "jobTitle": "Composer, Jazz Pianist and Theatre Organist",
+    "description": "British composer, jazz pianist and theatre organist. One of the world's most prolific production music composers, with over 80 albums for De Wolfe Music and music heard in productions including Boardwalk Empire, Better Call Saul, Victoria & Abdul, and Coronation Street.",
+    "birthDate": "1960-08-12",
+    "birthPlace": {
+      "@type": "Place",
+      "name": "London, England"
+    },
+    "nationality": "British",
+    "url": "https://jqcode.github.io/hello-world/",
+    "image": "https://jqcode.github.io/hello-world/images/andy-piano.png",
+    "sameAs": [
+      "https://en.wikipedia.org/wiki/Andy_Quin",
+      "https://www.imdb.com/name/nm1866213/",
+      "https://soundcloud.com/andy-quin",
+      "https://www.dewolfemusic.com/page/andy_quin",
+      "http://www.andyquinmusic.com"
+    ],
+    "award": "Production Music Award (PMA) 2023",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Keele University"
+    },
+    "genre": ["Production music", "Jazz", "Orchestral", "Film and television music"]
+  }
+  </script>
+
+  <!-- Structured data: Upcoming event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    "name": "Andy Quin — Dart Music Festival",
+    "startDate": "2026-05-15",
+    "endDate": "2026-05-17",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Dart Music Festival",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dartmouth",
+        "addressRegion": "Devon",
+        "addressCountry": "GB"
+      }
+    },
+    "performer": {
+      "@type": "Person",
+      "name": "Andy Quin"
+    },
+    "url": "https://www.dartmusicfestival.co.uk/act/andy-quin/"
+  }
+  </script>
 </head>
 <body>
 
+  <main>
   <!-- Grain overlay -->
   <div class="grain" aria-hidden="true"></div>
 
@@ -97,7 +189,7 @@
     <div class="container two-col reveal">
       <div class="about-image">
         <div class="image-frame">
-          <img src="images/andy-piano.png" alt="Andy Quin at a Steinway grand piano in a concert hall" />
+          <img src="images/andy-piano.png" alt="Andy Quin at a Steinway grand piano in a concert hall" loading="lazy" width="800" height="1067" />
         </div>
       </div>
       <div class="about-text">
@@ -215,7 +307,7 @@
       </div>
       <div class="press-lower">
         <div class="press-portrait reveal">
-          <img src="images/andy-portrait.png" alt="Andy Quin — portrait" />
+          <img src="images/andy-portrait.png" alt="Andy Quin — close-up portrait" loading="lazy" width="400" height="400" />
         </div>
         <div class="quotes-grid">
           <blockquote class="quote reveal">
@@ -342,6 +434,7 @@
       </ul>
     </div>
   </footer>
+  </main>
 
   <script src="script.js"></script>
 </body>
