@@ -70,6 +70,67 @@ section { padding: 7rem 0; }
   100% { transform: translate(0, 0); }
 }
 
+/* ─── Preloader ─────────────────────────────────────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .7s var(--ease), visibility .7s var(--ease);
+}
+.preloader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-logo {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.2rem;
+  letter-spacing: .3em;
+  color: var(--gold);
+  animation: preloader-in 1s var(--ease) both;
+}
+@keyframes preloader-in {
+  from { opacity: 0; transform: scale(.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Custom cursor (desktop only) ──────────────────────────────────────────── */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity .4s;
+}
+.cursor-dot {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transition: opacity .4s, transform .08s linear;
+}
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(196,163,90,.45);
+  transition: opacity .4s, width .25s var(--ease), height .25s var(--ease),
+              border-color .25s, transform .12s linear;
+}
+body.cursor-ready .cursor-dot,
+body.cursor-ready .cursor-ring { opacity: 1; }
+body.cursor-hover .cursor-ring {
+  width: 52px; height: 52px;
+  border-color: rgba(196,163,90,.9);
+}
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
 /* ─── Scroll reveal ─────────────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
@@ -77,6 +138,28 @@ section { padding: 7rem 0; }
   transition: opacity .8s var(--ease), transform .8s var(--ease);
 }
 .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Clip-path wipe reveal (for About image) */
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.1s cubic-bezier(.22,.61,.36,1);
+}
+.clip-reveal.visible {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* Hero h1 line stagger */
+.h1-line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.h1-line-2 { transition-delay: .18s; }
+.hero-content.visible .h1-line {
   opacity: 1;
   transform: translateY(0);
 }
@@ -95,9 +178,22 @@ section { padding: 7rem 0; }
   border-radius: var(--radius);
   cursor: pointer;
   background: transparent;
-  transition: background .25s, color .25s;
+  position: relative;
+  overflow: hidden;
+  transition: color .35s var(--ease);
+  z-index: 1;
 }
-.btn:hover { background: var(--gold); color: var(--bg); }
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform .4s cubic-bezier(.22,.61,.36,1);
+  z-index: -1;
+}
+.btn:hover { color: var(--bg); }
+.btn:hover::after { transform: translateX(0); }
 
 /* ─── Nav ───────────────────────────────────────────────────────────────────── */
 #nav {
@@ -937,4 +1033,46 @@ footer p { font-size: .75rem; color: var(--text3); }
   /* ── Hero stats larger on wide screens ───────────────────────────────── */
   .hero-stat { padding: 1.1rem 2.2rem; }
   .stat-num  { font-size: 1.75rem; }
+
+  /* ── Large faded section numbers ────────────────────────────────────── */
+  #portfolio,
+  #press,
+  #live { position: relative; overflow: hidden; }
+
+  #about::after,
+  #portfolio::after,
+  #press::after,
+  #live::after {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22vw;
+    line-height: 1;
+    color: rgba(255,255,255,.018);
+    position: absolute;
+    right: -1vw;
+    bottom: -4vw;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  #about::after     { content: '01'; }
+  #portfolio::after { content: '02'; }
+  #press::after     { content: '03'; }
+  #live::after      { content: '04'; }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .preloader { display: none; }
+  .cursor-dot, .cursor-ring { display: none; }
+  .reveal, .clip-reveal, .h1-line {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+  .btn::after { transition: none; }
+  .grain { animation: none; }
+  .featured-ticker { animation: none; }
+  .hero-scroll-line { animation: none; }
 }

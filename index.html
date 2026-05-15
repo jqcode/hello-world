@@ -103,6 +103,15 @@
 </head>
 <body>
 
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <span class="preloader-logo">AQ</span>
+  </div>
+
+  <!-- Custom cursor (desktop only) -->
+  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
   <main>
   <!-- Grain overlay -->
   <div class="grain" aria-hidden="true"></div>
@@ -129,22 +138,25 @@
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-content reveal">
       <p class="label">Composer &amp; Pianist</p>
-      <h1>Andy<br /><em>Quin</em></h1>
+      <h1>
+        <span class="h1-line h1-line-1">Andy</span><br />
+        <span class="h1-line h1-line-2"><em>Quin</em></span>
+      </h1>
       <div class="hero-rule" aria-hidden="true"></div>
       <p class="hero-sub">Production Music &nbsp;·&nbsp; Jazz Piano &nbsp;·&nbsp; Theatre Organ</p>
       <div class="hero-stats">
         <div class="hero-stat">
-          <span class="stat-num">80<sup>+</sup></span>
+          <span class="stat-num"><span class="count" data-target="80">0</span><sup>+</sup></span>
           <span class="stat-label">Albums</span>
         </div>
         <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat">
-          <span class="stat-num">1,000<sup>+</sup></span>
+          <span class="stat-num"><span class="count" data-target="1000">0</span><sup>+</sup></span>
           <span class="stat-label">Published works</span>
         </div>
         <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat">
-          <span class="stat-num">40<sup>+</sup></span>
+          <span class="stat-num"><span class="count" data-target="40">0</span><sup>+</sup></span>
           <span class="stat-label">Years in music</span>
         </div>
         <div class="hero-stat-divider" aria-hidden="true"></div>
@@ -187,7 +199,7 @@
   <!-- About -->
   <section id="about">
     <div class="container two-col reveal">
-      <div class="about-image">
+      <div class="about-image clip-reveal">
         <div class="image-frame">
           <img src="images/andy-piano.png" alt="Andy Quin at a Steinway grand piano in a concert hall" loading="lazy" width="800" height="1067" />
         </div>
