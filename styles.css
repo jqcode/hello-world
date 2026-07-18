@@ -6,8 +6,8 @@
   --bg2:      #111118;
   --bg3:      #16161f;
   --text:     #e2ddd5;
-  --text2:    rgba(226,221,213,.45);
-  --text3:    rgba(226,221,213,.2);
+  --text2:    rgba(226,221,213,.72);
+  --text3:    rgba(226,221,213,.48);
   --gold:     #c4a35a;
   --gold2:    #dbbf7a;
   --rule:     rgba(226,221,213,.1);
@@ -35,8 +35,12 @@ h3 { font-size: 1.15rem; }
 p { color: var(--text2); }
 a { color: inherit; text-decoration: none; }
 
+/* Keep aspect ratio: width/height attributes reserve space but must not
+   force a fixed height once CSS makes the width fluid */
+img { max-width: 100%; height: auto; }
+
 .container { max-width: 1080px; margin: 0 auto; padding: 0 2.5rem; }
-section { padding: 7rem 0; }
+section { padding: 5rem 0; }
 
 .label {
   font-size: .7rem;
@@ -47,7 +51,8 @@ section { padding: 7rem 0; }
   display: block;
 }
 
-.section-header { margin-bottom: 3.5rem; }
+.section-header { margin-bottom: 2.5rem; }
+.section-header h2 { margin-bottom: 1rem; }
 
 ::selection { background: rgba(196,163,90,.35); color: var(--text); }
 
@@ -156,12 +161,14 @@ body.cursor-hover .cursor-ring {
   transform: translateY(0);
 }
 
-/* Clip-path wipe reveal (for About image) */
-.clip-reveal {
+/* Clip-path wipe reveal (for About image).
+   The clip lives on the inner frame, not the observed element — a fully
+   clipped element reports zero intersection and the reveal never fires. */
+.clip-reveal .image-frame {
   clip-path: inset(0 0 100% 0);
   transition: clip-path 1.1s cubic-bezier(.22,.61,.36,1);
 }
-.clip-reveal.visible {
+.clip-reveal.visible .image-frame {
   clip-path: inset(0 0 0% 0);
 }
 
@@ -860,6 +867,7 @@ body.cursor-hover .cursor-ring {
   flex-direction: column;
   gap: 1.5rem;
 }
+.contact-form .btn { align-self: flex-start; }
 
 label {
   display: flex;
@@ -992,12 +1000,12 @@ footer p { font-size: .75rem; color: var(--text3); }
   #about > .container {
     max-width: 100%;
     padding: 0;
-    grid-template-columns: 44vw 1fr;
+    grid-template-columns: 34vw 1fr;
     gap: 0;
     align-items: stretch;
   }
   .about-image {
-    min-height: 82vh;
+    min-height: 70vh;
     overflow: hidden;
   }
   .about-image .image-frame {
@@ -1014,10 +1022,11 @@ footer p { font-size: .75rem; color: var(--text3); }
     filter: brightness(.88) contrast(1.08);
   }
   .about-text {
-    padding: 7rem 5rem 7rem 6rem;
+    padding: 5rem 5rem 5rem 4.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start; /* stop flex stretching links/buttons full-width */
   }
 
   /* ── Alternating section backgrounds for visual rhythm ───────────────── */
@@ -1092,13 +1101,11 @@ footer p { font-size: .75rem; color: var(--text3); }
   }
 
   /* ── Press: large hero quote + portrait row ──────────────────────────── */
-  #press { padding: 7rem 0; }
-
   .press-featured {
     text-align: center;
-    padding-bottom: 5rem;
+    padding-bottom: 3.5rem;
     border-bottom: 1px solid var(--rule);
-    margin-bottom: 5rem;
+    margin-bottom: 3.5rem;
   }
   .press-featured-quote {
     font-family: var(--font-serif);
@@ -1170,7 +1177,7 @@ footer p { font-size: .75rem; color: var(--text3); }
 @media (prefers-reduced-motion: reduce) {
   .preloader { display: none; }
   .cursor-dot, .cursor-ring { display: none; }
-  .reveal, .clip-reveal, .h1-line, .char {
+  .reveal, .clip-reveal, .clip-reveal .image-frame, .h1-line, .char {
     opacity: 1;
     transform: none;
     clip-path: none;
