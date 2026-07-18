@@ -49,6 +49,20 @@ section { padding: 7rem 0; }
 
 .section-header { margin-bottom: 3.5rem; }
 
+::selection { background: rgba(196,163,90,.35); color: var(--text); }
+
+/* ─── Scroll progress line ──────────────────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), var(--gold2));
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 101;
+  pointer-events: none;
+}
+
 /* ─── Grain ─────────────────────────────────────────────────────────────────── */
 .grain {
   position: fixed;
@@ -164,6 +178,28 @@ body.cursor-hover .cursor-ring {
   transform: translateY(0);
 }
 
+/* Per-letter rise (spans injected by JS; falls back to line stagger above) */
+.h1-line.has-chars {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(.7em) rotate(3deg);
+  transition: opacity .7s var(--ease), transform .95s var(--ease);
+  transition-delay: calc(var(--lb, 0s) + var(--ci) * .045s);
+}
+.h1-line-2 .char { --lb: .3s; }
+.hero-content.visible .char {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* Once scroll parallax takes over the hero content, kill the reveal transition */
+.hero-content.parallax { transition: none; }
+
 /* ─── Buttons ───────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-block;
@@ -180,7 +216,8 @@ body.cursor-hover .cursor-ring {
   background: transparent;
   position: relative;
   overflow: hidden;
-  transition: color .35s var(--ease);
+  transition: color .35s var(--ease), transform .35s var(--ease);
+  will-change: transform;
   z-index: 1;
 }
 .btn::after {
@@ -238,8 +275,23 @@ body.cursor-hover .cursor-ring {
   text-transform: uppercase;
   color: var(--text2);
   transition: color .2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -5px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s var(--ease);
 }
 .nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
 .nav-toggle {
   display: none;
@@ -289,9 +341,15 @@ body.cursor-hover .cursor-ring {
   transform: translate(-50%, -60%);
   width: 700px;
   height: 700px;
-  background: radial-gradient(ellipse, rgba(196,163,90,.04) 0%, transparent 70%);
+  max-width: 140vw;
+  background: radial-gradient(ellipse, rgba(196,163,90,.07) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
+  animation: glow-breathe 9s ease-in-out infinite;
+}
+@keyframes glow-breathe {
+  0%, 100% { opacity: .6; transform: translate(-50%, -60%) scale(1); }
+  50%      { opacity: 1;  transform: translate(-50%, -60%) scale(1.18); }
 }
 
 .hero-content { position: relative; z-index: 1; }
@@ -646,14 +704,54 @@ body.cursor-hover .cursor-ring {
 }
 
 .sc-item {
-  padding: 1.75rem 0;
+  padding: 1.75rem 1.25rem;
+  margin: 0 -1.25rem;
   border-bottom: 1px solid var(--rule);
+  transition: background .3s;
 }
 .sc-item:first-child { border-top: 1px solid var(--rule); }
+.sc-item:hover { background: rgba(196,163,90,.03); }
 
-.sc-meta { margin-bottom: 1rem; }
+.sc-meta {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+.sc-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .85rem;
+  color: var(--text3);
+}
 .sc-meta h3 { color: var(--text); margin-bottom: .2rem; font-size: 1.05rem; }
 .sc-meta .label { margin-bottom: 0; }
+
+/* Animated equaliser bars */
+.eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+  margin-left: .5rem;
+  vertical-align: baseline;
+}
+.eq i {
+  width: 2px;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: bottom;
+  animation: eq-bounce 1.15s ease-in-out infinite;
+  opacity: .8;
+}
+.eq i:nth-child(1) { animation-delay: 0s;    }
+.eq i:nth-child(2) { animation-delay: -.35s; }
+.eq i:nth-child(3) { animation-delay: -.7s;  }
+.eq i:nth-child(4) { animation-delay: -.15s; }
+@keyframes eq-bounce {
+  0%, 100% { transform: scaleY(.25); }
+  50%      { transform: scaleY(1); }
+}
 
 .sc-embed {
   width: 100%;
@@ -947,8 +1045,14 @@ footer p { font-size: .75rem; color: var(--text3); }
     height: 62vh;
     position: relative;
     overflow: hidden;
+  }
+  /* Transform-based parallax layer (background-attachment:fixed is unreliable) */
+  .image-break-bg {
+    position: absolute;
+    inset: -18% 0;
     background: url('images/andy-concert.png') center 30% / cover no-repeat;
-    background-attachment: fixed;
+    will-change: transform;
+    z-index: 0;
   }
   .image-break::before {
     content: '';
@@ -960,10 +1064,11 @@ footer p { font-size: .75rem; color: var(--text3); }
       rgba(11,11,15,.5)  45%,
       rgba(11,11,15,.2)  100%
     );
+    z-index: 1;
   }
   .image-break-inner {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 1080px;
     margin: 0 auto;
     width: 100%;
@@ -1065,7 +1170,7 @@ footer p { font-size: .75rem; color: var(--text3); }
 @media (prefers-reduced-motion: reduce) {
   .preloader { display: none; }
   .cursor-dot, .cursor-ring { display: none; }
-  .reveal, .clip-reveal, .h1-line {
+  .reveal, .clip-reveal, .h1-line, .char {
     opacity: 1;
     transform: none;
     clip-path: none;
@@ -1075,4 +1180,7 @@ footer p { font-size: .75rem; color: var(--text3); }
   .grain { animation: none; }
   .featured-ticker { animation: none; }
   .hero-scroll-line { animation: none; }
+  .hero-glow { animation: none; }
+  .eq i { animation: none; transform: scaleY(.5); }
+  .scroll-progress { display: none; }
 }
