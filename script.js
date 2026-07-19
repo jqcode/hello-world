@@ -198,6 +198,80 @@ const countObserver = new IntersectionObserver(entries => {
 
 countEls.forEach(el => countObserver.observe(el));
 
+// ─── Watch: click-to-load YouTube embeds (keeps initial page light) ────────
+document.querySelectorAll('.video-thumb').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0`;
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.title = btn.getAttribute('aria-label') || 'Video';
+    btn.replaceChildren(iframe);
+    btn.style.cursor = 'default';
+  }, { once: true });
+});
+
+// ─── Listen: custom players driven by the SoundCloud widget API ────────────
+// The plain embeds stay visible until the API is confirmed working, so the
+// section still functions if the script fails to load.
+(function initPlayers() {
+  const items = [...document.querySelectorAll('.sc-item')];
+  const list  = document.querySelector('.audio-list');
+  if (!items.length || !list) return;
+
+  const script = document.createElement('script');
+  script.src = 'https://w.soundcloud.com/player/api.js';
+  script.onload = () => {
+    const fmt = ms => {
+      const t = Math.round(ms / 1000);
+      return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0');
+    };
+
+    const widgets = items.map((item, i) => {
+      const widget = SC.Widget(item.querySelector('iframe'));
+      const fill   = item.querySelector('.player-fill');
+      const bar    = item.querySelector('.player-bar');
+      const cur    = item.querySelector('.pt-cur');
+      const durEl  = item.querySelector('.pt-dur');
+      let dur = 0;
+
+      widget.bind(SC.Widget.Events.READY, () => {
+        widget.getDuration(d => { dur = d; durEl.textContent = fmt(d); });
+        list.classList.add('sc-ready');
+      });
+      widget.bind(SC.Widget.Events.PLAY, () => {
+        item.classList.add('playing');
+        widgets.forEach((other, j) => { if (j !== i) other.pause(); });
+      });
+      widget.bind(SC.Widget.Events.PAUSE,  () => item.classList.remove('playing'));
+      widget.bind(SC.Widget.Events.FINISH, () => item.classList.remove('playing'));
+      widget.bind(SC.Widget.Events.PLAY_PROGRESS, e => {
+        if (dur) fill.style.width = (e.currentPosition / dur * 100) + '%';
+        cur.textContent = fmt(e.currentPosition);
+      });
+
+      item.querySelector('.player-play').addEventListener('click', () => widget.toggle());
+      bar.addEventListener('click', e => {
+        if (!dur) return;
+        const r = bar.getBoundingClientRect();
+        widget.seekTo(dur * (e.clientX - r.left) / r.width);
+      });
+      return widget;
+    });
+
+    // Hero CTA: scroll to the section, then start the first track
+    window.aqPlayFirst = () => widgets[0] && widgets[0].play();
+  };
+  document.head.appendChild(script);
+})();
+
+const heroListen = document.getElementById('hero-listen');
+if (heroListen) {
+  heroListen.addEventListener('click', () => {
+    if (window.aqPlayFirst) setTimeout(window.aqPlayFirst, 700);
+  });
+}
+
 // ─── Footer year ───────────────────────────────────────────────────────────
 document.getElementById('year').textContent = new Date().getFullYear();
 

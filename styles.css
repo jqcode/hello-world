@@ -493,6 +493,14 @@ body.cursor-hover .cursor-ring {
   to   { transform: translateX(-50%); }
 }
 
+.hero-listen {
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+}
+.hero-listen svg { width: 12px; height: 12px; }
+
 .hero-scroll {
   position: absolute;
   bottom: 2.5rem;
@@ -586,15 +594,36 @@ body.cursor-hover .cursor-ring {
 }
 .work-row:hover::before { opacity: 1; }
 
+/* Gold accent line sweeps in on hover */
+.work-row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 22%;
+  bottom: 22%;
+  width: 2px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transition: transform .35s var(--ease);
+}
+.work-row:hover::after { transform: scaleY(1); }
+
 .work-num {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: .85rem;
   color: var(--text3);
   padding-top: .15rem;
+  transition: color .3s;
 }
+.work-row:hover .work-num { color: var(--gold); }
 
-.work-main h3 { color: var(--text); margin-bottom: .4rem; }
+.work-main h3 {
+  color: var(--text);
+  margin-bottom: .4rem;
+  transition: transform .35s var(--ease);
+}
+.work-row:hover .work-main h3 { transform: translateX(6px); }
 .work-main p { font-size: .875rem; line-height: 1.6; }
 
 .work-meta {
@@ -651,6 +680,184 @@ body.cursor-hover .cursor-ring {
   text-transform: uppercase;
   color: var(--text3);
   font-style: normal;
+}
+
+/* ─── Cinematic quote banner ─────────────────────────────────────────────────── */
+.image-break {
+  display: flex;
+  align-items: flex-end;
+  height: 40vh;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+/* Transform-based parallax layer (background-attachment:fixed is unreliable).
+   The source photo is a narrow low-res crop, so it's blurred into an
+   atmospheric concert-light wash rather than shown literally. */
+.image-break-bg {
+  position: absolute;
+  inset: -22% -3%;
+  background: url('images/andy-concert.png') center 45% / cover no-repeat;
+  filter: blur(14px) brightness(.5);
+  will-change: transform;
+  z-index: 0;
+}
+.image-break::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11,11,15,.95) 0%,
+    rgba(11,11,15,.6)  45%,
+    rgba(11,11,15,.45) 100%
+  );
+  z-index: 1;
+}
+.image-break-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 2.5rem 3.5rem;
+}
+.image-break-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.8vw, 2.4rem);
+  color: var(--text);
+  line-height: 1.35;
+  max-width: 780px;
+  margin-bottom: 1rem;
+}
+.image-break-inner cite {
+  font-size: .7rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-style: normal;
+}
+
+/* ─── Journey timeline ───────────────────────────────────────────────────────── */
+.timeline {
+  list-style: none;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-left: 1.75rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .5rem;
+  bottom: .5rem;
+  width: 1px;
+  background: var(--rule);
+}
+.tl-item { position: relative; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1.75rem - 3px);
+  top: .65rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.tl-year {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--gold);
+  display: block;
+  line-height: 1.2;
+  margin-bottom: .3rem;
+}
+.tl-item p { font-size: .875rem; line-height: 1.6; }
+
+@media (min-width: 769px) {
+  .timeline {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2.5rem;
+    padding-left: 0;
+    padding-top: 2.25rem;
+  }
+  .timeline::before {
+    left: .5rem;
+    right: .5rem;
+    top: 0;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .tl-item::before {
+    left: 0;
+    top: calc(-2.25rem - 3px);
+  }
+}
+
+/* ─── Watch (video) ──────────────────────────────────────────────────────────── */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 769px) {
+  .video-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+.video-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: #000;
+  padding: 0;
+  cursor: pointer;
+}
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.7) contrast(1.05);
+  transition: filter .4s var(--ease), transform .6s var(--ease);
+}
+.video-thumb:hover img {
+  filter: brightness(.9) contrast(1.05);
+  transform: scale(1.03);
+}
+.video-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 64px;
+  border: 1px solid rgba(196,163,90,.7);
+  border-radius: 50%;
+  background: rgba(11,11,15,.55);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s, transform .3s var(--ease);
+}
+.video-play svg { width: 22px; height: 22px; margin-left: 3px; }
+.video-thumb:hover .video-play {
+  background: rgba(11,11,15,.8);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.video-thumb iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-card h3 {
+  color: var(--text);
+  margin-top: 1rem;
+  font-size: 1.05rem;
 }
 
 /* ─── Live events ────────────────────────────────────────────────────────────── */
@@ -733,7 +940,7 @@ body.cursor-hover .cursor-ring {
 .sc-meta h3 { color: var(--text); margin-bottom: .2rem; font-size: 1.05rem; }
 .sc-meta .label { margin-bottom: 0; }
 
-/* Animated equaliser bars */
+/* Animated equaliser bars — pulse only while that track is playing */
 .eq {
   display: inline-flex;
   align-items: flex-end;
@@ -747,9 +954,12 @@ body.cursor-hover .cursor-ring {
   height: 100%;
   background: var(--gold);
   transform-origin: bottom;
+  transform: scaleY(.25);
   animation: eq-bounce 1.15s ease-in-out infinite;
+  animation-play-state: paused;
   opacity: .8;
 }
+.sc-item.playing .eq i { animation-play-state: running; }
 .eq i:nth-child(1) { animation-delay: 0s;    }
 .eq i:nth-child(2) { animation-delay: -.35s; }
 .eq i:nth-child(3) { animation-delay: -.7s;  }
@@ -769,14 +979,26 @@ body.cursor-hover .cursor-ring {
 }
 .sc-embed:hover { opacity: 1; }
 
-/* Custom player */
+/* Custom player — shown only once the SoundCloud engine is ready;
+   until then the plain embeds below remain the fallback UI */
 .player {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 1.25rem;
-  width: 320px;
-  flex-shrink: 0;
+  width: 100%;
 }
+.audio-list.sc-ready .player { display: flex; }
+.audio-list.sc-ready .sc-embed {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  left: -9999px;
+}
+.player-play .ic-pause { display: none; }
+.sc-item.playing .player-play .ic-play  { display: none; }
+.sc-item.playing .player-play .ic-pause { display: block; }
 
 .player-play {
   width: 44px; height: 44px;
@@ -973,9 +1195,8 @@ footer p { font-size: .75rem; color: var(--text3); }
 
   .footer-inner { flex-direction: column; gap: 1rem; }
 
-  /* Hide desktop-only elements on mobile */
-  .image-break { display: none; }
-  .press-featured { display: none; }
+  .image-break-inner { padding: 0 1.25rem 2.5rem; }
+
   .press-lower {
     display: flex;
     flex-direction: column;
@@ -1029,8 +1250,10 @@ footer p { font-size: .75rem; color: var(--text3); }
   }
 
   /* ── Alternating section backgrounds for visual rhythm ───────────────── */
-  #portfolio  { background: var(--bg2); }
-  #press      { background: var(--bg); }
+  #journey    { background: var(--bg2); }
+  #portfolio  { background: var(--bg); }
+  #press      { background: var(--bg2); }
+  #watch      { background: var(--bg); }
   #live       { background: var(--bg2); }
   #audio      { background: var(--bg); }
   #contact    { background: var(--bg2); }
@@ -1047,82 +1270,7 @@ footer p { font-size: .75rem; color: var(--text3); }
   .work-row + .work-row { border-top: 1px solid var(--rule); }
 
   /* ── Cinematic image break ───────────────────────────────────────────── */
-  .image-break {
-    display: flex;
-    align-items: flex-end;
-    height: 46vh;
-    position: relative;
-    overflow: hidden;
-  }
-  /* Transform-based parallax layer (background-attachment:fixed is unreliable).
-     The source photo is a narrow low-res crop, so it's blurred into an
-     atmospheric concert-light wash rather than shown literally. */
-  .image-break-bg {
-    position: absolute;
-    inset: -22% -3%;
-    background: url('images/andy-concert.png') center 45% / cover no-repeat;
-    filter: blur(14px) brightness(.5);
-    will-change: transform;
-    z-index: 0;
-  }
-  .image-break::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(11,11,15,.95) 0%,
-      rgba(11,11,15,.6)  45%,
-      rgba(11,11,15,.45) 100%
-    );
-    z-index: 1;
-  }
-  .image-break-inner {
-    position: relative;
-    z-index: 2;
-    max-width: 1080px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0 2.5rem 5rem;
-  }
-  .image-break-quote {
-    font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-    color: var(--text);
-    line-height: 1.35;
-    max-width: 780px;
-    margin-bottom: 1rem;
-  }
-  .image-break-inner cite {
-    font-size: .7rem;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-style: normal;
-  }
-
-  /* ── Press: large hero quote + portrait row ──────────────────────────── */
-  .press-featured {
-    text-align: center;
-    padding-bottom: 3.5rem;
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 3.5rem;
-  }
-  .press-featured-quote {
-    font-family: var(--font-serif);
-    font-size: clamp(1.8rem, 3.2vw, 3rem);
-    color: var(--text);
-    line-height: 1.3;
-    max-width: 860px;
-    margin: 0 auto 1.25rem;
-  }
-  .press-featured cite {
-    font-size: .7rem;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-style: normal;
-  }
+  .image-break { height: 46vh; }
 
   .press-lower {
     display: grid;
@@ -1154,11 +1302,13 @@ footer p { font-size: .75rem; color: var(--text3); }
   /* ── Large faded section numbers ────────────────────────────────────── */
   #portfolio,
   #press,
+  #watch,
   #live { position: relative; overflow: hidden; }
 
   #about::after,
   #portfolio::after,
   #press::after,
+  #watch::after,
   #live::after {
     font-family: var(--font-serif);
     font-style: italic;
@@ -1175,7 +1325,8 @@ footer p { font-size: .75rem; color: var(--text3); }
   #about::after     { content: '01'; }
   #portfolio::after { content: '02'; }
   #press::after     { content: '03'; }
-  #live::after      { content: '04'; }
+  #watch::after     { content: '04'; }
+  #live::after      { content: '05'; }
 }
 
 /* ─── Reduced motion ─────────────────────────────────────────────────────────── */
