@@ -695,8 +695,10 @@ body.cursor-hover .cursor-ring {
    Colour studio shot rendered monochrome to sit within the site's palette. */
 .image-break-bg {
   position: absolute;
-  inset: -18% 0;
-  background: url('images/studio-desk.jpg') center 35% / cover no-repeat;
+  /* Anchor the photo's top edge: minimal overshoot above, all the
+     parallax travel room below */
+  inset: -8% 0 -28% 0;
+  background: url('images/studio-desk.jpg') center top / cover no-repeat;
   filter: grayscale(1) brightness(.55) contrast(1.1);
   will-change: transform;
   z-index: 0;
