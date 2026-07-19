@@ -15,8 +15,8 @@
   <meta property="og:title"       content="Andy Quin | Composer, Jazz Pianist &amp; Theatre Organist" />
   <meta property="og:description" content="British composer, jazz pianist and theatre organist. Over 80 albums for De Wolfe Music, with music heard in Boardwalk Empire, Better Call Saul, Victoria &amp; Abdul, and Coronation Street." />
   <meta property="og:url"         content="https://jqcode.github.io/Andy-website/" />
-  <meta property="og:image"       content="https://jqcode.github.io/Andy-website/images/andy-piano.png" />
-  <meta property="og:image:alt"   content="Andy Quin at a Steinway grand piano in a concert hall" />
+  <meta property="og:image"       content="https://jqcode.github.io/Andy-website/images/og-card.jpg" />
+  <meta property="og:image:alt"   content="Andy Quin at a grand piano, photographed beneath the raised lid" />
   <meta property="og:locale"      content="en_GB" />
   <meta property="profile:first_name" content="Andy" />
   <meta property="profile:last_name"  content="Quin" />
@@ -25,13 +25,14 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Andy Quin | Composer, Jazz Pianist &amp; Theatre Organist" />
   <meta name="twitter:description" content="British composer, jazz pianist and theatre organist. Over 80 albums for De Wolfe Music. PMA Award 2023." />
-  <meta name="twitter:image"       content="https://jqcode.github.io/Andy-website/images/andy-piano.png" />
+  <meta name="twitter:image"       content="https://jqcode.github.io/Andy-website/images/og-card.jpg" />
 
   <!-- Favicon (initials as inline SVG) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0b0f'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' fill='%23c4a35a'>AQ</text></svg>" />
 
   <!-- Preload hero background image so it doesn't delay LCP -->
-  <link rel="preload" as="image" href="images/andy-silhouette.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/hero-steinway.jpg" media="(min-width: 769px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/hero-steinway-m.jpg" media="(max-width: 768px)" fetchpriority="high" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,7 +57,7 @@
     },
     "nationality": "British",
     "url": "https://jqcode.github.io/Andy-website/",
-    "image": "https://jqcode.github.io/Andy-website/images/andy-piano.png",
+    "image": "https://jqcode.github.io/Andy-website/images/og-card.jpg",
     "sameAs": [
       "https://en.wikipedia.org/wiki/Andy_Quin",
       "https://www.imdb.com/name/nm1866213/",
@@ -210,7 +211,7 @@
     <div class="container two-col reveal">
       <div class="about-image clip-reveal">
         <div class="image-frame">
-          <img src="images/andy-piano.png" alt="Andy Quin at a Steinway grand piano in a concert hall" loading="lazy" width="224" height="512" />
+          <img src="images/andy-organ.jpg" alt="Andy Quin smiling at the console of a golden Compton theatre organ" loading="lazy" width="1600" height="1200" />
         </div>
       </div>
       <div class="about-text">
@@ -227,9 +228,15 @@
   <!-- Journey timeline -->
   <section id="journey">
     <div class="container">
-      <div class="section-header reveal">
-        <p class="label">The journey</p>
-        <h2>Six decades at the keyboard</h2>
+      <div class="journey-head reveal">
+        <div class="section-header">
+          <p class="label">The journey</p>
+          <h2>Six decades at the keyboard</h2>
+        </div>
+        <figure class="journey-photo">
+          <img src="images/andy-young.jpg" alt="Andy Quin aged around twelve, seated beside a Wurlitzer theatre organ" loading="lazy" width="731" height="500" />
+          <figcaption>At the Wurlitzer, early 1970s</figcaption>
+        </figure>
       </div>
       <ol class="timeline">
         <li class="tl-item reveal">
@@ -349,8 +356,8 @@
   <div class="image-break">
     <div class="image-break-bg" aria-hidden="true"></div>
     <div class="image-break-inner">
-      <p class="image-break-quote">"A true virtuoso in the mould of Art&nbsp;Tatum and Oscar&nbsp;Peterson, with a stride technique to match."</p>
-      <cite>— Music industry commentary</cite>
+      <p class="image-break-quote">"One of the most versatile, prolific and successful production music composers in the world."</p>
+      <cite>— De Wolfe Music</cite>
     </div>
   </div>
 
@@ -363,8 +370,8 @@
         </div>
         <div class="quotes-grid">
           <blockquote class="quote reveal">
-            <p>"One of the most versatile, prolific and successful production music composers in the world — with thousands of broadcasts every year across all continents."</p>
-            <cite>— De Wolfe Music</cite>
+            <p>"A true virtuoso in the mould of Art Tatum and Oscar Peterson, with a stride technique to match."</p>
+            <cite>— Music industry commentary</cite>
           </blockquote>
           <blockquote class="quote reveal">
             <p>"A pioneer of computer sampling who helped define the sound of British television in the 1980s."</p>
