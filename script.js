@@ -66,8 +66,6 @@ const nav         = document.getElementById('nav');
 const progress    = document.getElementById('scroll-progress');
 const heroBg      = document.querySelector('.hero-bg');
 const heroContent = document.querySelector('.hero-content');
-const imageBreak  = document.querySelector('.image-break');
-const breakBg     = document.querySelector('.image-break-bg');
 const heroH       = () => document.getElementById('hero').offsetHeight;
 
 let ticking = false;
@@ -95,13 +93,6 @@ function updateScroll() {
     }
   }
 
-  if (imageBreak && breakBg && imageBreak.offsetParent !== null) {
-    const r = imageBreak.getBoundingClientRect();
-    if (r.bottom > 0 && r.top < window.innerHeight) {
-      const p = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-      breakBg.style.transform = `translateY(${p * -10}%)`;
-    }
-  }
 }
 
 window.addEventListener('scroll', () => {
