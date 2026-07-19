@@ -898,6 +898,35 @@ body.cursor-hover .cursor-ring {
 /* ─── Live events ────────────────────────────────────────────────────────────── */
 #live { border-top: 1px solid var(--rule); }
 
+.live-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.live-photo { margin: 0; }
+.live-photo img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  filter: brightness(.92) saturate(.85);
+  display: block;
+}
+.live-photo figcaption {
+  margin-top: .6rem;
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+@media (min-width: 769px) {
+  .live-inner {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 4.5rem;
+    align-items: center;
+  }
+}
+
 .events-list { display: flex; flex-direction: column; gap: 0; }
 
 .event-row {
