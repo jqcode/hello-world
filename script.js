@@ -256,10 +256,42 @@ document.querySelectorAll('.video-thumb').forEach(btn => {
   document.head.appendChild(script);
 })();
 
+// ─── Hero CTA → lightbox with 'Awakening' playing ──────────────────────────
 const heroListen = document.getElementById('hero-listen');
-if (heroListen) {
-  heroListen.addEventListener('click', () => {
-    if (window.aqPlayFirst) setTimeout(window.aqPlayFirst, 700);
+const videoModal = document.getElementById('video-modal');
+const modalFrame = document.getElementById('video-modal-frame');
+let lastFocus = null;
+
+function openListenModal() {
+  lastFocus = document.activeElement;
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube-nocookie.com/embed/xO_zKhukPrk?autoplay=1&rel=0';
+  iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+  iframe.allowFullscreen = true;
+  iframe.title = 'Andy Quin — Awakening';
+  modalFrame.replaceChildren(iframe);
+  videoModal.hidden = false;
+  document.body.classList.add('modal-open');
+  videoModal.querySelector('.video-modal-close').focus();
+}
+
+function closeListenModal() {
+  videoModal.hidden = true;
+  modalFrame.replaceChildren(); // removing the iframe stops playback
+  document.body.classList.remove('modal-open');
+  if (lastFocus) lastFocus.focus();
+}
+
+if (heroListen && videoModal) {
+  heroListen.addEventListener('click', e => {
+    e.preventDefault();
+    openListenModal();
+  });
+  videoModal.querySelectorAll('[data-close]').forEach(el =>
+    el.addEventListener('click', closeListenModal)
+  );
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !videoModal.hidden) closeListenModal();
   });
 }
 
