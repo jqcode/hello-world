@@ -100,7 +100,7 @@ function updateScroll() {
     const r = aboutWrap.getBoundingClientRect();
     if (r.bottom > 0 && r.top < window.innerHeight) {
       const p = 1 - r.bottom / (window.innerHeight + r.height); // 0 → 1 across the pass
-      aboutImg.style.transform = `translateY(${(-p * 10).toFixed(2)}%)`;
+      aboutImg.style.transform = `translateY(${(-p * 18).toFixed(2)}%)`;
     }
   }
 }

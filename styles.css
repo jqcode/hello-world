@@ -1366,7 +1366,7 @@ footer p { font-size: .75rem; color: var(--text3); }
   .about-image .image-frame img {
     width: 100%;
     /* Oversized within the frame so scroll parallax has travel room */
-    height: 112%;
+    height: 124%;
     object-fit: cover;
     /* Andy sits on the right of the source photo — keep him in frame */
     object-position: 72% 35%;
