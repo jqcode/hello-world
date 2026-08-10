@@ -272,14 +272,15 @@ const videoModal = document.getElementById('video-modal');
 const modalFrame = document.getElementById('video-modal-frame');
 let lastFocus = null;
 
-function openListenModal() {
+function openListenModal(id = 'xO_zKhukPrk', title = 'Andy Quin — Awakening') {
   lastFocus = document.activeElement;
   const iframe = document.createElement('iframe');
-  iframe.src = 'https://www.youtube-nocookie.com/embed/xO_zKhukPrk?autoplay=1&rel=0';
+  iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
   iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
   iframe.allowFullscreen = true;
-  iframe.title = 'Andy Quin — Awakening';
+  iframe.title = title;
   modalFrame.replaceChildren(iframe);
+  videoModal.querySelector('.video-modal-panel').setAttribute('aria-label', title);
   videoModal.hidden = false;
   document.body.classList.add('modal-open');
   videoModal.querySelector('.video-modal-close').focus();
@@ -297,6 +298,12 @@ if (heroListen && videoModal) {
     e.preventDefault();
     openListenModal();
   });
+  // Works mosaic cards that carry video
+  document.querySelectorAll('.mc-play').forEach(btn =>
+    btn.addEventListener('click', () =>
+      openListenModal(btn.dataset.video, btn.dataset.title)
+    )
+  );
   videoModal.querySelectorAll('[data-close]').forEach(el =>
     el.addEventListener('click', closeListenModal)
   );
