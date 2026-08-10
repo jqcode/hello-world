@@ -66,6 +66,8 @@ const nav         = document.getElementById('nav');
 const progress    = document.getElementById('scroll-progress');
 const heroBg      = document.querySelector('.hero-bg');
 const heroContent = document.querySelector('.hero-content');
+const aboutWrap   = document.querySelector('.about-image');
+const aboutImg    = document.querySelector('.about-image img');
 const heroH       = () => document.getElementById('hero').offsetHeight;
 
 let ticking = false;
@@ -93,6 +95,14 @@ function updateScroll() {
     }
   }
 
+  // About image: oversized photo drifts slowly upward through its frame
+  if (aboutImg && aboutWrap && window.innerWidth > 768) {
+    const r = aboutWrap.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < window.innerHeight) {
+      const p = 1 - r.bottom / (window.innerHeight + r.height); // 0 → 1 across the pass
+      aboutImg.style.transform = `translateY(${(-p * 10).toFixed(2)}%)`;
+    }
+  }
 }
 
 window.addEventListener('scroll', () => {

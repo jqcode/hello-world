@@ -1365,12 +1365,14 @@ footer p { font-size: .75rem; color: var(--text3); }
   .about-image .image-frame::before { display: none; }
   .about-image .image-frame img {
     width: 100%;
-    height: 100%;
+    /* Oversized within the frame so scroll parallax has travel room */
+    height: 112%;
     object-fit: cover;
     /* Andy sits on the right of the source photo — keep him in frame */
     object-position: 72% 35%;
     border-radius: 0;
     filter: brightness(.9) contrast(1.05) saturate(.85);
+    will-change: transform;
   }
   .about-text {
     padding: 5rem 5rem 5rem 4.5rem;
