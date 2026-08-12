@@ -830,6 +830,8 @@ body.cursor-hover .cursor-ring {
   inset: 0;
   background: url('images/studio-desk.jpg') center top / cover no-repeat;
   filter: grayscale(1) brightness(.55) contrast(1.1);
+  /* Mirrored so Andy sits on the right, away from the quote */
+  transform: scaleX(-1);
   z-index: 0;
 }
 .image-break::before {
