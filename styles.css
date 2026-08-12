@@ -606,6 +606,13 @@ body.cursor-hover .cursor-ring {
   transform: scale(1.07);
   filter: grayscale(.75) brightness(.5) contrast(1.15);
 }
+/* Cards backed by real footage: the frame is content, not just texture,
+   so it sits brighter and warms toward colour on hover */
+.has-video .mc-bg { filter: grayscale(.85) brightness(.52) contrast(1.1); }
+.has-video:hover .mc-bg {
+  transform: scale(1.07);
+  filter: grayscale(.35) brightness(.62) contrast(1.08);
+}
 /* Legibility scrim */
 .mosaic-card::before {
   content: '';
