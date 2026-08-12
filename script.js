@@ -95,12 +95,13 @@ function updateScroll() {
     }
   }
 
-  // About image: oversized photo drifts slowly upward through its frame
+  // About image: slow push-in anchored at the top edge (see styles.css) —
+  // gives clear motion without ever cropping Andy's head out of frame
   if (aboutImg && aboutWrap && window.innerWidth > 768) {
     const r = aboutWrap.getBoundingClientRect();
     if (r.bottom > 0 && r.top < window.innerHeight) {
       const p = 1 - r.bottom / (window.innerHeight + r.height); // 0 → 1 across the pass
-      aboutImg.style.transform = `translateY(${(-p * 18).toFixed(2)}%)`;
+      aboutImg.style.transform = `scale(${(1 + p * 0.12).toFixed(4)})`;
     }
   }
 }

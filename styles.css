@@ -1495,13 +1495,14 @@ footer p { font-size: .75rem; color: var(--text3); }
   .about-image .image-frame::before { display: none; }
   .about-image .image-frame img {
     width: 100%;
-    /* Oversized within the frame so scroll parallax has travel room */
-    height: 124%;
+    height: 100%;
     object-fit: cover;
-    /* Andy sits on the right of the source photo — keep him in frame */
-    object-position: 72% 35%;
+    object-position: 50% 0%;
     border-radius: 0;
     filter: brightness(.9) contrast(1.05) saturate(.85);
+    /* Scroll motion is a slow push-in anchored to the top edge, so Andy's
+       head stays pinned in frame while the image breathes */
+    transform-origin: 50% 0%;
     will-change: transform;
   }
   .about-text {
